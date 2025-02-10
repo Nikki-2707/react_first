@@ -6,12 +6,15 @@ const handleUppercase=()=>{
     // console.log("Uppercase was clicked "+ text);
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("Converted to Upper Case","success");
 
 }
 const handleLowercase=()=>{
     // console.log("Lowercase was clicked "+ text);
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("Converted to Lower Case","success");
+
 
 }
 const handleOnChange=(event)=>{
@@ -21,6 +24,7 @@ const handleOnChange=(event)=>{
 }
 const handleOnClear=()=>{
     setText('');
+    props.showAlert("Text cleared","success");
 
 }
 const handleTitlecase=()=>{
@@ -30,15 +34,21 @@ const handleTitlecase=()=>{
     }
 
         setText(splitStr.join(" ")); 
+        props.showAlert("Converted to Title Case","success");
+
 }
 const handleOnCopy=()=>{
     let text=document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("Text copied to clipboard","success");
+
 }
 const handleExtraSpaces=()=>{
     let newText=text.split(/[ ]+/);
-    setText(newText.join(" "))
+    setText(newText.join(" "));
+    props.showAlert("Extra spaces removed","success");
+
 }
 
 
@@ -48,7 +58,7 @@ const [text,setText] = useState('');
     <div className="container" style={{color: props.mode==='dark'? 'white':'black'}}>
         <h1>{props.heading}</h1>
         <div className="mb-3">
-        <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8" style={{backgroundColor: props.mode==='dark'?'grey':'white',color:props.mode==='dark'? 'white' : 'black'}}></textarea>
+        <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8" style={{backgroundColor: props.mode==='light'?'white':'rgb(75 89 112)',color:props.mode==='light'? 'black' : 'white'}}></textarea>
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUppercase}>Convert to UpperCase</button>
         <button className="btn btn-primary mx-1" onClick={handleLowercase}>Convert to LowerCase</button>
