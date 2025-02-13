@@ -51,6 +51,12 @@ const handleExtraSpaces=()=>{
 
 }
 
+const wordCount = (text)=>{
+      let regex = /\s+\S+/;
+      let numOfWords = text.split(regex);
+      return numOfWords.length;
+    }
+
 
 const [text,setText] = useState('');
     return (
@@ -69,8 +75,8 @@ const [text,setText] = useState('');
     </div>
     <div className='container my-3' style={{color:props.mode==='dark'?'white':'black'}}>
         <h2>Your text summary</h2>
-        <p>{text.split(" ").length} words and {text.length} characters</p>
-        <p>{0.008 * text.split(" ").length} minutes to read</p>
+        <p>{text===""? 0 : wordCount(text)} words and {text.length} characters</p>
+        <p>{ text===""? 0 * 0.008 : wordCount(text) * 0.008} Minutes read</p>
         <h2>Preview</h2>
         <p>{text.length>0?text:"Enter something in the textbox to preview"}</p>
     </div>
